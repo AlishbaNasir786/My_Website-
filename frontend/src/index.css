@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-black text-brand-white;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #F3E5AB;
+  }
+
+  /* Smooth focus ring */
+  *:focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Gold shimmer animation for headings */
+  .gold-shimmer {
+    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    from { background-position: 0% center; }
+    to { background-position: 200% center; }
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  /* Input base style */
+  .input-base {
+    @apply bg-brand-black border border-brand-gold/30 rounded-lg p-3 text-brand-white;
+    @apply focus:outline-none focus:border-brand-gold transition-colors text-sm;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-brand-gold text-brand-black font-bold px-6 py-3 rounded-lg;
+    @apply hover:bg-brand-gold-light transition-all duration-200;
+    @apply disabled:opacity-60 disabled:cursor-not-allowed;
+    @apply uppercase tracking-wider text-sm;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply border border-brand-gold text-brand-gold font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-brand-gold hover:text-brand-black transition-all duration-200;
+    @apply uppercase tracking-wider text-sm;
+  }
+}
