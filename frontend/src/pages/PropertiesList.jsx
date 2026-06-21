@@ -151,7 +151,7 @@ export default function PropertiesList() {
                 <div className="h-48 bg-brand-black relative overflow-hidden">
                   {p.images && p.images.length > 0 ? (
                     <img 
-                      src={`${API_BASE}${p.images[0].url}`} 
+                      src={p.images[0].imageData || `${API_BASE}${p.images[0].url}`}
                       alt={p.title} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80"
                     />

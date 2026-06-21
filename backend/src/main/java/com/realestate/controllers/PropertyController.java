@@ -95,19 +95,40 @@ public class PropertyController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
-    // Admin/Agent endpoint: Upload Image
+    // Admin/Agent endpoint: Upload Image - stores as Base64 in DB (survives server restarts)
     @PostMapping("/{id}/images")
     @PreAuthorize("hasRole('ADMIN') or hasRole('AGENT')")
     public ResponseEntity<?> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         return propertyRepository.findById(id)
                 .map(property -> {
-                    String url = storageService.save(file);
-                    PropertyImage img = new PropertyImage();
-                    img.setProperty(property);
-                    img.setUrl(url);
-                    img.setPrimary(false);
-                    imageRepository.save(img);
-                    return ResponseEntity.ok(img);
+                    try {
+                        // Convert image to Base64 and store directly in database
+                        String base64 = java.util.Base64.getEncoder().encodeToString(file.getBytes());
+                        String mimeType = file.getContentType() != null ? file.getContentType() : "image/jpeg";
+                        String imageData = "data:" + mimeType + ";base64," + base64;
+
+                        PropertyImage img = new PropertyImage();
+                        img.setProperty(property);
+                        img.setUrl("/api/v1/properties/" + property.getId() + "/images/" + System.currentTimeMillis());
+                        img.setImageData(imageData);
+                        img.setPrimary(false);
+                        imageRepository.save(img);
+                        return ResponseEntity.ok(img);
+                    } catch (Exception e) {
+                        return ResponseEntity.internalServerError().body("Failed to process image: " + e.getMessage());
+                    }
+                }).orElse(ResponseEntity.notFound().build());
+    }
+
+    // Serve image by ID directly from DB
+    @GetMapping("/{propertyId}/images/{imageId}")
+    public ResponseEntity<?> getImage(@PathVariable Long propertyId, @PathVariable Long imageId) {
+        return imageRepository.findById(imageId)
+                .map(img -> {
+                    if (img.getImageData() != null && img.getImageData().startsWith("data:")) {
+                        return ResponseEntity.ok(java.util.Map.of("imageData", img.getImageData()));
+                    }
+                    return ResponseEntity.notFound().build();
                 }).orElse(ResponseEntity.notFound().build());
     }
 }

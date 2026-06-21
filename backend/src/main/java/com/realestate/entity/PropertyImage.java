@@ -18,4 +18,8 @@ public class PropertyImage {
 
     private String url;
     private boolean isPrimary;
+
+    // Store image directly in DB as Base64 so it persists across server restarts
+    @Column(columnDefinition = "TEXT")
+    private String imageData; // format: "data:image/jpeg;base64,..."
 }

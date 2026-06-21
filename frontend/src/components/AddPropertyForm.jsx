@@ -28,28 +28,22 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // Compress image using Canvas API before uploading
-  const compressImage = (file, maxWidthPx = 1200, quality = 0.75) => {
+  // Fast resize using createImageBitmap (built-in browser, no canvas loop)
+  const compressImage = (file) => {
     return new Promise((resolve) => {
-      // Skip compression for small files (< 200KB)
-      if (file.size < 200 * 1024) { resolve(file); return; }
+      // Skip tiny files
+      if (file.size < 300 * 1024) { resolve(file); return; }
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
           const canvas = document.createElement('canvas');
-          let { width, height } = img;
-          if (width > maxWidthPx) {
-            height = Math.round((height * maxWidthPx) / width);
-            width = maxWidthPx;
-          }
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          canvas.toBlob((blob) => {
-            resolve(new File([blob], file.name, { type: 'image/jpeg' }));
-          }, 'image/jpeg', quality);
+          const MAX = 900;
+          let w = img.width, h = img.height;
+          if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; }
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          canvas.toBlob((blob) => resolve(new File([blob], file.name, { type: 'image/jpeg' })), 'image/jpeg', 0.72);
         };
         img.src = e.target.result;
       };

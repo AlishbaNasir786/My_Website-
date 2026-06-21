@@ -23,7 +23,8 @@ export default function PropertyDetails() {
       .then(res => {
         setProperty(res.data);
         if (res.data.images && res.data.images.length > 0) {
-          setActiveImage(res.data.images[0].url);
+          // Use imageData (Base64) if available, fallback to URL
+          setActiveImage(res.data.images[0].imageData || res.data.images[0].url);
         }
       })
       .catch(err => console.error(err));
@@ -71,7 +72,7 @@ export default function PropertyDetails() {
             <div className="h-[450px] rounded-xl overflow-hidden bg-brand-black border border-brand-gold/15 mb-4 relative">
               {activeImage ? (
                 <img 
-                  src={`${API_BASE}${activeImage}`} 
+                  src={activeImage.startsWith('data:') ? activeImage : `${API_BASE}${activeImage}`} 
                   alt={property.title} 
                   className="w-full h-full object-cover transition-opacity duration-300"
                 />
@@ -86,12 +87,12 @@ export default function PropertyDetails() {
                 {property.images.map((img) => (
                   <button 
                     key={img.id} 
-                    onClick={() => setActiveImage(img.url)}
+                    onClick={() => setActiveImage(img.imageData || img.url)}
                     className={`w-24 h-16 rounded overflow-hidden border-2 transition-all flex-shrink-0 ${
-                      activeImage === img.url ? 'border-brand-gold' : 'border-transparent opacity-60 hover:opacity-100'
+                      activeImage === (img.imageData || img.url) ? 'border-brand-gold' : 'border-transparent opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={`${API_BASE}${img.url}`} alt="thumbnail" className="w-full h-full object-cover" />
+                    <img src={img.imageData || `${API_BASE}${img.url}`} alt="thumbnail" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
