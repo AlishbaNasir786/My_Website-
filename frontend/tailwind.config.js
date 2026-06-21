@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#ffffff', // Pure white background
-        'brand-dark': '#f8f9fa', // Very light gray for cards and sections
-        'brand-gold': '#C084FC', // Lilac
-        'brand-gold-light': '#F472B6', // Pink
-        'brand-blue': '#3B82F6', // Vibrant blue
-        'brand-white': '#1f2937', // Dark gray text for readability on white
+        'brand-black': '#ffffff', // Pure white background (less black overall)
+        'brand-dark': '#fafafa', // Off-white for subtle section contrast
+        'brand-gold': '#D4AF37', // Rich luxurious gold
+        'brand-gold-light': '#F3E5AB', // Soft light gold
+        'brand-blue': '#222222', // Mapped previous blue elements to a soft black/charcoal
+        'brand-white': '#111111', // Very dark charcoal/black for highly readable text
       },
       fontFamily: {
         'sans': ['Outfit', 'sans-serif'],
