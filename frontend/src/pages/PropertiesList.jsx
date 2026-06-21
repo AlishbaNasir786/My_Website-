@@ -63,7 +63,7 @@ export default function PropertiesList() {
       <h2 className="text-4xl font-bold text-brand-gold mb-8 text-center tracking-wide uppercase">Discover Premium Properties</h2>
       
       {/* Search & Filter Panel */}
-      <form onSubmit={handleSearchSubmit} className="bg-brand-dark border border-brand-gold/20 p-6 rounded-xl shadow-xl shadow-brand-gold/5 mb-12">
+      <form onSubmit={handleSearchSubmit} className="glass-card p-6 rounded-2xl mb-12 relative z-10">
         <div className="flex items-center gap-2 mb-4 text-brand-gold border-b border-brand-gold/25 pb-2">
           <Filter size={18} />
           <span className="font-bold uppercase tracking-wider text-sm">Search Filters</span>
@@ -71,17 +71,17 @@ export default function PropertiesList() {
         
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
           <div className="md:col-span-2">
-            <input 
-              type="text" 
-              placeholder="Keyword (e.g. DHA, Bahria, Penthouse)" 
-              className="w-full bg-brand-black border border-brand-gold/30 rounded p-3 text-brand-white focus:outline-none focus:border-brand-gold text-sm"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
+              <input 
+                type="text" 
+                placeholder="Keyword (e.g. DHA, Bahria, Penthouse)" 
+                className="input-base w-full"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
           </div>
           <div>
             <select 
-              className="w-full bg-brand-black border border-brand-gold/30 rounded p-3 text-brand-white focus:outline-none focus:border-brand-gold text-sm cursor-pointer"
+              className="input-base w-full cursor-pointer"
               value={propertyType}
               onChange={e => setPropertyType(e.target.value)}
             >
@@ -94,7 +94,7 @@ export default function PropertiesList() {
           </div>
           <div>
             <select 
-              className="w-full bg-brand-black border border-brand-gold/30 rounded p-3 text-brand-white focus:outline-none focus:border-brand-gold text-sm cursor-pointer"
+              className="input-base w-full cursor-pointer"
               value={purpose}
               onChange={e => setPurpose(e.target.value)}
             >
@@ -104,17 +104,17 @@ export default function PropertiesList() {
             </select>
           </div>
           <div className="flex gap-2">
-            <input 
-              type="number" 
-              placeholder="Min Price" 
-              className="w-1/2 bg-brand-black border border-brand-gold/30 rounded p-3 text-brand-white focus:outline-none focus:border-brand-gold text-sm"
+              <input 
+                type="number" 
+                placeholder="Min Price" 
+                className="input-base w-1/2"
               value={minPrice}
               onChange={e => setMinPrice(e.target.value)}
             />
-            <input 
-              type="number" 
-              placeholder="Max Price" 
-              className="w-1/2 bg-brand-black border border-brand-gold/30 rounded p-3 text-brand-white focus:outline-none focus:border-brand-gold text-sm"
+              <input 
+                type="number" 
+                placeholder="Max Price" 
+                className="input-base w-1/2"
               value={maxPrice}
               onChange={e => setMaxPrice(e.target.value)}
             />
@@ -125,13 +125,13 @@ export default function PropertiesList() {
           <button 
             type="button" 
             onClick={clearFilters}
-            className="px-6 py-2 border border-brand-gold/50 text-brand-white/80 rounded hover:bg-brand-black hover:text-brand-gold transition-colors text-sm"
+            className="btn-secondary"
           >
             Clear
           </button>
           <button 
             type="submit" 
-            className="bg-brand-gold text-brand-black font-bold px-8 py-2 rounded hover:bg-brand-gold-light transition-colors flex items-center gap-2 text-sm"
+            className="btn-primary flex items-center gap-2"
           >
             <Search size={16} /> Apply Filters
           </button>
@@ -146,7 +146,7 @@ export default function PropertiesList() {
           {properties.length === 0 ? (
             <div className="col-span-3 text-center text-brand-white/50 py-12">No properties matched your search.</div>
           ) : properties.map(p => (
-            <div key={p.id} className="bg-brand-dark border border-brand-gold/20 rounded-xl overflow-hidden hover:border-brand-gold/60 transition-all shadow-lg shadow-brand-gold/5 group flex flex-col justify-between">
+            <div key={p.id} className="glass-card overflow-hidden flex flex-col justify-between group cursor-pointer">
               <div>
                 <div className="h-48 bg-brand-black relative overflow-hidden">
                   {p.images && p.images.length > 0 ? (
@@ -178,7 +178,7 @@ export default function PropertiesList() {
                 </div>
               </div>
               <div className="p-6 pt-0">
-                <Link to={`/properties/${p.id}`} className="block text-center w-full bg-brand-black border border-brand-gold text-brand-gold font-medium py-2 rounded hover:bg-brand-gold hover:text-brand-black transition-colors uppercase tracking-wider text-xs">
+                <Link to={`/properties/${p.id}`} className="btn-secondary block text-center w-full">
                   View Details
                 </Link>
               </div>
