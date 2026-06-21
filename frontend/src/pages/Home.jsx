@@ -19,7 +19,7 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center justify-center bg-transparent">
-        <div className="z-10 text-center max-w-4xl px-8 py-12 glass-card mx-6 my-auto">
+        <div className="z-10 text-center max-w-4xl px-8 py-12 bg-[#2c2c2c]/70 backdrop-blur-md border-2 border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.2)] rounded-3xl mx-6 my-auto">
           <h1 className="text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-6 drop-shadow-lg">
             Find Your <span className="text-brand-gold">Malik</span> Home
           </h1>
@@ -30,7 +30,7 @@ export default function Home() {
             <input 
               type="text" 
               placeholder="Search by city, society, or keyword (e.g. Islamabad, DHA)..." 
-              className="input-base flex-grow bg-[#000000]/50 backdrop-blur-md"
+              className="input-base flex-grow bg-[#121212]/80 backdrop-blur-md"
               value={searchVal}
               onChange={e => setSearchVal(e.target.value)}
             />
