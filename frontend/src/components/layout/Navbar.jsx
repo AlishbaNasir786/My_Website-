@@ -31,8 +31,9 @@ export default function Navbar() {
           <span className="text-2xl font-bold tracking-wider font-display">Malik Real Estate</span>
         </Link>
         <div className="flex gap-6 items-center">
-          <Link to="/" className="text-brand-white hover:text-brand-gold transition-colors">Home</Link>
-          <Link to="/properties" className="text-brand-white hover:text-brand-gold transition-colors">Properties</Link>
+          <Link to="/" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide">Home</Link>
+          <Link to="/about" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide">About</Link>
+          <Link to="/properties" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide">Properties</Link>
           {isAdminOrAgent && (
             <Link to="/admin" className="text-brand-white hover:text-brand-gold transition-colors">Dashboard</Link>
           )}

@@ -6,6 +6,7 @@ import Register from './pages/auth/Register';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import PropertiesList from './pages/PropertiesList';
 import PropertyDetails from './pages/PropertyDetails';
+import About from './pages/About';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="admin" element={<AdminDashboard />} />
           <Route path="properties" element={<PropertiesList />} />
           <Route path="properties/:id" element={<PropertyDetails />} />
+          <Route path="about" element={<About />} />
         </Route>
       </Routes>
     </Router>
