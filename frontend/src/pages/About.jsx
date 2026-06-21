@@ -52,10 +52,14 @@ export default function About() {
           </div>
         </div>
         <div className="glass-card p-2 rounded-2xl order-1 md:order-2">
-          {/* Placeholder for the founder image */}
+          {/* Changed to look for a local image in the public folder */}
           <img 
-            src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80" 
+            src="/malik-arshad.png" 
             alt="Malik Arshad" 
+            onError={(e) => {
+              e.target.onerror = null; 
+              e.target.src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80"
+            }}
             className="w-full h-[500px] object-cover object-top rounded-xl border-2 border-brand-gold"
           />
         </div>

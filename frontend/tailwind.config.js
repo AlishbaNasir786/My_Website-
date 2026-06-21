@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#000000', // Pure black background
-        'brand-dark': '#0a0a0a', // Almost black for subtle section contrast
+        'brand-black': '#121212', // Much lighter black / dark gray
+        'brand-dark': '#1c1c1c', // Lighter contrast layer
         'brand-gold': '#D4AF37', // Rich luxurious gold
         'brand-gold-light': '#F3E5AB', // Soft light gold
         'brand-blue': '#D4AF37', // Mapped previous blue elements to gold
