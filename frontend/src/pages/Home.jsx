@@ -19,23 +19,23 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center bg-transparent py-10 px-4 md:px-6">
-        <div className="z-10 text-center w-full max-w-4xl px-4 md:px-8 py-8 md:py-12 bg-black/30 backdrop-blur-sm border-2 border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.3)] rounded-3xl my-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-4 md:mb-6 drop-shadow-lg">
+        <div className="z-10 text-center max-w-xl w-full px-6 py-8 bg-black/30 backdrop-blur-sm border border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.25)] rounded-2xl">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-white tracking-tight mb-3 drop-shadow-lg">
             Discover Your <span className="text-brand-gold">Dream</span> Estate
           </h1>
-          <p className="text-xl text-brand-white/90 mb-10 font-medium drop-shadow-md">
-            The premier AI-powered real estate platform in Pakistan. Discover elite properties, smart investments, and luxury living.
+          <p className="text-sm md:text-base text-brand-white/85 mb-6 font-medium drop-shadow-md leading-relaxed">
+            Pakistan's premier AI-powered real estate platform. Elite properties, smart investments & luxury living.
           </p>
-          <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-4 max-w-3xl mx-auto z-10 relative">
+          <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
             <input 
               type="text" 
-              placeholder="Search by city, society, or keyword (e.g. Islamabad, DHA)..." 
-              className="input-base flex-grow bg-[#121212]/80 backdrop-blur-md"
+              placeholder="Search city, society or keyword..." 
+              className="input-base flex-grow text-sm"
               value={searchVal}
               onChange={e => setSearchVal(e.target.value)}
             />
-            <button type="submit" className="btn-primary flex items-center justify-center gap-2">
-              <Search size={20} /> SEARCH
+            <button type="submit" className="btn-primary flex items-center justify-center gap-2 whitespace-nowrap text-xs px-5 py-2.5">
+              <Search size={16} /> SEARCH
             </button>
           </form>
         </div>
