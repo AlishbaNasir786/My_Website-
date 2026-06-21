@@ -7,7 +7,7 @@ export default function About() {
       
       {/* Founder Section */}
       <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
-        <div className="order-2 md:order-1">
+        <div className="order-2 md:order-1 bg-black/30 backdrop-blur-sm border-2 border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.3)] rounded-3xl p-6 md:p-8">
           <h3 className="text-3xl font-bold text-brand-gold mb-6 font-display">Meet Malik Arshad</h3>
           <p className="text-brand-white/80 text-lg mb-6 leading-relaxed">
             As the visionary founder of Malik Real Estate, Malik Arshad brings decades of unmatched expertise, integrity, and dedication to the real estate market of Pakistan.
@@ -15,7 +15,7 @@ export default function About() {
           <p className="text-brand-white/80 text-lg mb-8 leading-relaxed">
             "Our mission is to build trust through transparency, providing our clients with the finest properties and the most lucrative investment opportunities in the country."
           </p>
-          <div className="glass-card p-6 inline-block">
+          <div className="glass-card p-6 inline-block rounded-xl border border-brand-gold/50">
             <h4 className="text-xl font-bold text-brand-gold">Malik Arshad</h4>
             <p className="text-brand-white/60">CEO & Founder</p>
           </div>
@@ -43,7 +43,7 @@ export default function About() {
             className="w-full h-[400px] object-cover rounded-xl border-2 border-brand-gold"
           />
         </div>
-        <div>
+        <div className="bg-black/30 backdrop-blur-sm border-2 border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.3)] rounded-3xl p-6 md:p-8">
           <h3 className="text-3xl font-bold text-brand-gold mb-6 font-display">Our Professional Office</h3>
           <p className="text-brand-white/80 text-lg mb-6 leading-relaxed">
             Welcome to the heart of Malik Real Estate. Located in the prestigious <strong className="text-white">DHA Phase 5, Islamabad</strong>, our state-of-the-art office is designed to provide you with the most comfortable and premium property consultation experience in the region.
