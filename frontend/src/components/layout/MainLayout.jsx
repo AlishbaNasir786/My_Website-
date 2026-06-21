@@ -5,9 +5,9 @@ import ChatbotWidget from '../ChatbotWidget';
 
 export default function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-transparent">
+    <div className="min-h-screen flex flex-col bg-transparent overflow-x-hidden w-full">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow w-full overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />
