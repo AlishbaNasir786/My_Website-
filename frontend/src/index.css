@@ -22,7 +22,7 @@
     background: #0a0510;
   }
   ::-webkit-scrollbar-thumb {
-    background: #C084FC;
+    background: #3B82F6;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -31,7 +31,7 @@
 
   /* Smooth focus ring */
   *:focus-visible {
-    outline: 2px solid #C084FC;
+    outline: 2px solid #3B82F6;
     outline-offset: 2px;
   }
 }
@@ -39,7 +39,7 @@
 @layer components {
   /* Luxury shimmer animation for headings */
   .gold-shimmer {
-    background: linear-gradient(90deg, #C084FC 0%, #3B82F6 25%, #F472B6 50%, #C084FC 100%);
+    background: linear-gradient(90deg, #3B82F6 0%, #C084FC 25%, #F472B6 50%, #3B82F6 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,30 +54,32 @@
 
   /* Glassmorphism card */
   .glass-card {
-    background: rgba(26, 11, 46, 0.7);
+    background: rgba(10, 5, 16, 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(192, 132, 252, 0.3);
-    box-shadow: 0 10px 30px -5px rgba(192, 132, 252, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    box-shadow: 0 10px 30px -5px rgba(192, 132, 252, 0.2);
   }
 
   /* Input base style */
   .input-base {
-    @apply bg-brand-black border border-brand-gold/30 rounded-lg p-3 text-brand-white;
-    @apply focus:outline-none focus:border-brand-gold transition-colors text-sm;
+    @apply bg-brand-black border border-brand-blue/30 rounded-lg p-3 text-brand-white;
+    @apply focus:outline-none focus:border-brand-blue transition-colors text-sm;
   }
 
   /* Primary button */
   .btn-primary {
-    @apply bg-brand-gold text-brand-black font-bold px-6 py-3 rounded-lg;
-    @apply hover:bg-brand-gold-light transition-all duration-200;
+    background: linear-gradient(135deg, #3B82F6 0%, #C084FC 50%, #F472B6 100%);
+    color: #ffffff;
+    @apply font-bold px-6 py-3 rounded-lg;
+    @apply hover:opacity-90 transition-all duration-200;
     @apply disabled:opacity-60 disabled:cursor-not-allowed;
-    @apply uppercase tracking-wider text-sm;
+    @apply uppercase tracking-wider text-sm shadow-[0_0_15px_rgba(59,130,246,0.5)];
   }
 
   /* Secondary button */
   .btn-secondary {
-    @apply border border-brand-gold text-brand-gold font-semibold px-6 py-3 rounded-lg;
-    @apply hover:bg-brand-gold hover:text-brand-black transition-all duration-200;
-    @apply uppercase tracking-wider text-sm;
+    @apply border-2 border-brand-blue text-brand-blue font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-brand-blue hover:text-white transition-all duration-200;
+    @apply uppercase tracking-wider text-sm shadow-[0_0_10px_rgba(59,130,246,0.2)];
   }
 }
