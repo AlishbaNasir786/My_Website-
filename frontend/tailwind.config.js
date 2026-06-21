@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#ffffff', // Pure white background (less black overall)
-        'brand-dark': '#fafafa', // Off-white for subtle section contrast
+        'brand-black': '#000000', // Pure black background
+        'brand-dark': '#0a0a0a', // Almost black for subtle section contrast
         'brand-gold': '#D4AF37', // Rich luxurious gold
         'brand-gold-light': '#F3E5AB', // Soft light gold
-        'brand-blue': '#000000', // Mapped previous blue elements to pure black
-        'brand-white': '#000000', // Pure black for maximum readability
+        'brand-blue': '#D4AF37', // Mapped previous blue elements to gold
+        'brand-white': '#ffffff', // Pure white for text on black background
       },
       fontFamily: {
         'sans': ['Outfit', 'sans-serif'],
