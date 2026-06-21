@@ -5,8 +5,37 @@ export default function About() {
     <div className="max-w-7xl mx-auto px-6 py-12">
       <h2 className="text-5xl font-bold text-brand-gold mb-12 text-center tracking-widest uppercase">About Us</h2>
       
-      {/* Office Section */}
+      {/* Founder Section */}
       <div className="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <div className="order-2 md:order-1">
+          <h3 className="text-3xl font-bold text-brand-gold mb-6 font-display">Meet Malik Arshad</h3>
+          <p className="text-brand-white/80 text-lg mb-6 leading-relaxed">
+            As the visionary founder of Malik Real Estate, Malik Arshad brings decades of unmatched expertise, integrity, and dedication to the real estate market of Pakistan.
+          </p>
+          <p className="text-brand-white/80 text-lg mb-8 leading-relaxed">
+            "Our mission is to build trust through transparency, providing our clients with the finest properties and the most lucrative investment opportunities in the country."
+          </p>
+          <div className="glass-card p-6 inline-block">
+            <h4 className="text-xl font-bold text-brand-gold">Malik Arshad</h4>
+            <p className="text-brand-white/60">CEO & Founder</p>
+          </div>
+        </div>
+        <div className="glass-card p-2 rounded-2xl order-1 md:order-2">
+          {/* Using the image copy 2.png that was just uploaded to the public folder */}
+          <img 
+            src="/image copy 2.png" 
+            alt="Malik Arshad" 
+            onError={(e) => {
+              e.target.onerror = null; 
+              e.target.src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80"
+            }}
+            className="w-full h-[500px] object-cover object-top rounded-xl border-2 border-brand-gold"
+          />
+        </div>
+      </div>
+
+      {/* Office Section */}
+      <div className="grid md:grid-cols-2 gap-12 items-center">
         <div className="glass-card p-2 rounded-2xl">
           <img 
             src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80" 
@@ -33,35 +62,6 @@ export default function About() {
               <span className="text-lg">contact@malikrealestate.com</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Founder Section */}
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <div className="order-2 md:order-1">
-          <h3 className="text-3xl font-bold text-brand-gold mb-6 font-display">Meet Malik Arshad</h3>
-          <p className="text-brand-white/80 text-lg mb-6 leading-relaxed">
-            As the visionary founder of Malik Real Estate, Malik Arshad brings decades of unmatched expertise, integrity, and dedication to the real estate market of Pakistan.
-          </p>
-          <p className="text-brand-white/80 text-lg mb-8 leading-relaxed">
-            "Our mission is to build trust through transparency, providing our clients with the finest properties and the most lucrative investment opportunities in the country."
-          </p>
-          <div className="glass-card p-6 inline-block">
-            <h4 className="text-xl font-bold text-brand-gold">Malik Arshad</h4>
-            <p className="text-brand-white/60">CEO & Founder</p>
-          </div>
-        </div>
-        <div className="glass-card p-2 rounded-2xl order-1 md:order-2">
-          {/* Using the image copy 2.png that was just uploaded to the public folder */}
-          <img 
-            src="/image copy 2.png" 
-            alt="Malik Arshad" 
-            onError={(e) => {
-              e.target.onerror = null; 
-              e.target.src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80"
-            }}
-            className="w-full h-[500px] object-cover object-top rounded-xl border-2 border-brand-gold"
-          />
         </div>
       </div>
     </div>
