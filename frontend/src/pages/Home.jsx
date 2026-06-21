@@ -18,20 +18,19 @@ export default function Home() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center bg-transparent border-b border-brand-gold/20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-0 mix-blend-overlay"></div>
-        <div className="z-10 text-center max-w-4xl px-6">
-          <h1 className="text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-6">
+      <section className="relative h-[80vh] flex items-center justify-center bg-transparent">
+        <div className="z-10 text-center max-w-4xl px-8 py-12 glass-card mx-6 my-auto">
+          <h1 className="text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-6 drop-shadow-lg">
             Find Your <span className="text-brand-gold">Malik</span> Home
           </h1>
-          <p className="text-xl text-brand-white/80 mb-10">
+          <p className="text-xl text-brand-white/90 mb-10 font-medium drop-shadow-md">
             The premier AI-powered real estate platform in Pakistan. Discover elite properties, smart investments, and luxury living.
           </p>
-          <form onSubmit={handleSearchSubmit} className="glass-card p-4 rounded-xl flex flex-col md:flex-row gap-4 max-w-3xl mx-auto z-10 relative">
+          <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row gap-4 max-w-3xl mx-auto z-10 relative">
             <input 
               type="text" 
               placeholder="Search by city, society, or keyword (e.g. Islamabad, DHA)..." 
-              className="input-base flex-grow"
+              className="input-base flex-grow bg-[#000000]/50 backdrop-blur-md"
               value={searchVal}
               onChange={e => setSearchVal(e.target.value)}
             />
