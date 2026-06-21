@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+﻿import { Link, useNavigate } from 'react-router-dom';
 import { Building2 } from 'lucide-react';
 
 export default function Navbar() {
@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-2 text-brand-gold">
           <Building2 size={28} />
-          <span className="text-xl font-bold tracking-wider font-display">PRESTIGE ESTATE</span>
+          <span className="text-xl font-bold tracking-wider font-display">Malik Real Estate</span>
         </Link>
         <div className="flex gap-6 items-center">
           <Link to="/" className="text-brand-white hover:text-brand-gold transition-colors">Home</Link>

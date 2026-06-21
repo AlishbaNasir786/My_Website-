@@ -21,8 +21,9 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleChange = (field) => (e) => {
-    setFormData(prev => ({ ...prev, [field]: e.target.value }));
+  const handleChange = (field, isNumber = false) => (e) => {
+    const value = isNumber ? (e.target.value === '' ? '' : Number(e.target.value)) : e.target.value;
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleImageChange = (e) => {
@@ -104,7 +105,7 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Price (PKR) *</label>
-              <input required placeholder="e.g. 15000000" type="number" className={inputClass} onChange={handleChange('price')} />
+              <input required placeholder="e.g. 15000000" type="number" className={inputClass} value={formData.price} onChange={handleChange('price', true)} />
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Location</label>
@@ -129,7 +130,7 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Area Size *</label>
-              <input required placeholder="e.g. 5" type="number" className={inputClass} onChange={handleChange('areaSize')} />
+              <input required placeholder="e.g. 5" type="number" className={inputClass} value={formData.areaSize} onChange={handleChange('areaSize', true)} />
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Area Unit *</label>
@@ -142,11 +143,11 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Bedrooms</label>
-              <input placeholder="e.g. 4" type="number" min="0" className={inputClass} onChange={handleChange('bedrooms')} />
+              <input placeholder="e.g. 4" type="number" min="0" className={inputClass} value={formData.bedrooms} onChange={handleChange('bedrooms', true)} />
             </div>
             <div>
               <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-1">Bathrooms</label>
-              <input placeholder="e.g. 3" type="number" min="0" className={inputClass} onChange={handleChange('bathrooms')} />
+              <input placeholder="e.g. 3" type="number" min="0" className={inputClass} value={formData.bathrooms} onChange={handleChange('bathrooms', true)} />
             </div>
           </div>
 

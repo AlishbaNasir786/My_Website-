@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import AiGenerator from '../../components/AiGenerator';
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-3 mb-6 pb-4 border-b border-brand-gold/15">
             <LayoutDashboard className="text-brand-gold" size={24} />
             <div>
-              <h3 className="font-bold text-brand-white">Prestige Panel</h3>
+              <h3 className="font-bold text-brand-white">Malik Panel</h3>
               <p className="text-xs text-brand-white/50">{currentUser?.roles?.[0]?.replace('ROLE_', '')} View</p>
             </div>
           </div>

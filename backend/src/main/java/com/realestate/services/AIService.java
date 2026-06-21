@@ -1,4 +1,4 @@
-package com.realestate.services;
+﻿package com.realestate.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -36,13 +36,13 @@ public class AIService {
             if (!result.contains("\"error\"")) return result;
         }
 
-        // Smart fallback — generate realistic content locally
+        // Smart fallback â€” generate realistic content locally
         return generateFallbackContent(title, location, price, type);
     }
 
     public String chatWithConsultant(String userMessage) {
         if (isApiKeyValid()) {
-            String prompt = "You are a professional Real Estate Consultant for Prestige Estate Pakistan. "
+            String prompt = "You are a professional Real Estate Consultant for Malik Real Estate Pakistan. "
                     + "Help users with property investment, buying, selling, and renting. "
                     + "Focus on Pakistani cities like Lahore, Karachi, Islamabad, Rawalpindi, "
                     + "and societies like DHA, Bahria Town, Gulberg, F-sectors. "
@@ -99,7 +99,7 @@ public class AIService {
         }
     }
 
-    // ─── Offline Fallback ─────────────────────────────────────────────────────
+    // â”€â”€â”€ Offline Fallback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     private String generateFallbackContent(String title, String location, String price, String type) {
         String priceFormatted = price.isEmpty() ? "" : "PKR " + price;
@@ -113,13 +113,13 @@ public class AIService {
                 + "Situated in one of Pakistan's most sought-after neighborhoods, residents enjoy "
                 + "proximity to top schools, hospitals, shopping centers, and major business districts. "
                 + "The community infrastructure ensures a secure and serene lifestyle.\n\n"
-                + "This is a rare opportunity to own a prestige property " + (priceFormatted.isEmpty() ? "" : "at " + priceFormatted) + ". "
+                + "This is a rare opportunity to own a Malik property " + (priceFormatted.isEmpty() ? "" : "at " + priceFormatted) + ". "
                 + "Whether you are looking for a family home or a sound investment, "
                 + "this property delivers exceptional value and long-term appreciation potential.";
 
-        String urdu = "یہ خوبصورت " + type + " " + loc + " میں واقع ہے۔ یہ جائیداد جدید معماری اور اعلیٰ معیار کی تعمیر کا بہترین نمونہ ہے۔ "
-                + "مکین کو یہاں تمام سہولیات میسر ہیں جن میں قریبی اسکول، ہسپتال اور شاپنگ سینٹر شامل ہیں۔ "
-                + "یہ پاکستان کے بہترین علاقوں میں سے ایک میں واقع ایک منفرد سرمایہ کاری کا موقع ہے۔";
+        String urdu = "ÛŒÛ Ø®ÙˆØ¨ØµÙˆØ±Øª " + type + " " + loc + " Ù…ÛŒÚº ÙˆØ§Ù‚Ø¹ ÛÛ’Û” ÛŒÛ Ø¬Ø§Ø¦ÛŒØ¯Ø§Ø¯ Ø¬Ø¯ÛŒØ¯ Ù…Ø¹Ù…Ø§Ø±ÛŒ Ø§ÙˆØ± Ø§Ø¹Ù„ÛŒÙ° Ù…Ø¹ÛŒØ§Ø± Ú©ÛŒ ØªØ¹Ù…ÛŒØ± Ú©Ø§ Ø¨ÛØªØ±ÛŒÙ† Ù†Ù…ÙˆÙ†Û ÛÛ’Û” "
+                + "Ù…Ú©ÛŒÙ† Ú©Ùˆ ÛŒÛØ§Úº ØªÙ…Ø§Ù… Ø³ÛÙˆÙ„ÛŒØ§Øª Ù…ÛŒØ³Ø± ÛÛŒÚº Ø¬Ù† Ù…ÛŒÚº Ù‚Ø±ÛŒØ¨ÛŒ Ø§Ø³Ú©ÙˆÙ„ØŒ ÛØ³Ù¾ØªØ§Ù„ Ø§ÙˆØ± Ø´Ø§Ù¾Ù†Ú¯ Ø³ÛŒÙ†Ù¹Ø± Ø´Ø§Ù…Ù„ ÛÛŒÚºÛ” "
+                + "ÛŒÛ Ù¾Ø§Ú©Ø³ØªØ§Ù† Ú©Û’ Ø¨ÛØªØ±ÛŒÙ† Ø¹Ù„Ø§Ù‚ÙˆÚº Ù…ÛŒÚº Ø³Û’ Ø§ÛŒÚ© Ù…ÛŒÚº ÙˆØ§Ù‚Ø¹ Ø§ÛŒÚ© Ù…Ù†ÙØ±Ø¯ Ø³Ø±Ù…Ø§ÛŒÛ Ú©Ø§Ø±ÛŒ Ú©Ø§ Ù…ÙˆÙ‚Ø¹ ÛÛ’Û”";
 
         String romanUrdu = "Yeh khubsoorat " + type + " " + loc + " mein waqay hai. "
                 + "Yeh jaidad jadeed mimari aur aala mayaar ki tameer ka behtareen namoona hai. "
@@ -129,10 +129,10 @@ public class AIService {
                 + "premium property " + loc + ", real estate investment Pakistan, "
                 + "DHA property, Bahria Town, Lahore real estate, Islamabad property";
 
-        String caption = "🏡 " + title + "\n📍 " + loc + "\n"
-                + (priceFormatted.isEmpty() ? "" : "💰 " + priceFormatted + "\n")
-                + "✨ Premium living at its finest!\n\n"
-                + "#RealEstate #Pakistan #LuxuryLiving #" + type + " #PrestigeEstate #DHA #BahriaTown #PropertyForSale";
+        String caption = "ðŸ¡ " + title + "\nðŸ“ " + loc + "\n"
+                + (priceFormatted.isEmpty() ? "" : "ðŸ’° " + priceFormatted + "\n")
+                + "âœ¨ Premium living at its finest!\n\n"
+                + "#RealEstate #Pakistan #LuxuryLiving #" + type + " #MalikRealEstate #DHA #BahriaTown #PropertyForSale";
 
         return "{\n"
                 + "  \"englishDescription\": " + jsonStr(english) + ",\n"
@@ -149,7 +149,7 @@ public class AIService {
         if (message.contains("dha") || message.contains("defence")) {
             return "DHA (Defence Housing Authority) is one of Pakistan's most prestigious residential areas. "
                     + "DHA Lahore and DHA Karachi are particularly popular for their excellent infrastructure, "
-                    + "security, and high-end amenities. Properties here offer strong capital appreciation — "
+                    + "security, and high-end amenities. Properties here offer strong capital appreciation â€” "
                     + "typically 10-15% annually. Current prices range from 2 Crore for plots to 8+ Crore for houses. "
                     + "It's an excellent long-term investment. Would you like to see available DHA properties?";
         }
@@ -162,41 +162,41 @@ public class AIService {
         }
         if (message.contains("invest") || message.contains("best area") || message.contains("recommend")) {
             return "For real estate investment in Pakistan in 2024-2025, here are the top recommendations:\n\n"
-                    + "🏆 **Top Investment Areas:**\n"
-                    + "1. DHA Lahore/Karachi – Highest ROI, premium security\n"
-                    + "2. Bahria Town – Affordable entry point, good appreciation\n"
-                    + "3. Islamabad F/G Sectors – Government-backed, stable value\n"
-                    + "4. Blue World City – Emerging market, high growth potential\n\n"
-                    + "💡 Tip: Plot investments typically yield 20-30% appreciation over 3 years in these areas. "
+                    + "ðŸ† **Top Investment Areas:**\n"
+                    + "1. DHA Lahore/Karachi â€“ Highest ROI, premium security\n"
+                    + "2. Bahria Town â€“ Affordable entry point, good appreciation\n"
+                    + "3. Islamabad F/G Sectors â€“ Government-backed, stable value\n"
+                    + "4. Blue World City â€“ Emerging market, high growth potential\n\n"
+                    + "ðŸ’¡ Tip: Plot investments typically yield 20-30% appreciation over 3 years in these areas. "
                     + "Would you like details on any specific area?";
         }
         if (message.contains("price") || message.contains("cost") || message.contains("how much")) {
             return "Pakistani property prices vary significantly by location and type:\n\n"
-                    + "📊 **Average Price Ranges (2024):**\n"
-                    + "• 5 Marla House DHA Lahore: 2.5–4 Crore PKR\n"
-                    + "• 10 Marla House DHA: 4–8 Crore PKR\n"
-                    + "• 1 Kanal House DHA: 8–20 Crore PKR\n"
-                    + "• Bahria Town 5 Marla: 1.5–2.5 Crore PKR\n"
-                    + "• Apartment Islamabad: 80 Lac–2 Crore PKR\n\n"
+                    + "ðŸ“Š **Average Price Ranges (2024):**\n"
+                    + "â€¢ 5 Marla House DHA Lahore: 2.5â€“4 Crore PKR\n"
+                    + "â€¢ 10 Marla House DHA: 4â€“8 Crore PKR\n"
+                    + "â€¢ 1 Kanal House DHA: 8â€“20 Crore PKR\n"
+                    + "â€¢ Bahria Town 5 Marla: 1.5â€“2.5 Crore PKR\n"
+                    + "â€¢ Apartment Islamabad: 80 Lacâ€“2 Crore PKR\n\n"
                     + "Prices fluctuate with market conditions. Browse our listings for current prices!";
         }
         if (message.contains("rent")) {
             return "Rental yields in Pakistan are typically 3-6% annually. Popular rental areas include:\n\n"
-                    + "🏠 **Best Rental Markets:**\n"
-                    + "• Gulberg Lahore – High demand from businesses & expats\n"
-                    + "• DHA Karachi – Premium rentals, 30K–150K/month for houses\n"
-                    + "• F-8, F-7 Islamabad – Diplomatic enclave proximity\n"
-                    + "• Blue Area Islamabad – Commercial rental hotspot\n\n"
+                    + "ðŸ  **Best Rental Markets:**\n"
+                    + "â€¢ Gulberg Lahore â€“ High demand from businesses & expats\n"
+                    + "â€¢ DHA Karachi â€“ Premium rentals, 30Kâ€“150K/month for houses\n"
+                    + "â€¢ F-8, F-7 Islamabad â€“ Diplomatic enclave proximity\n"
+                    + "â€¢ Blue Area Islamabad â€“ Commercial rental hotspot\n\n"
                     + "Would you like to explore rental listings on our platform?";
         }
 
         // Generic default
-        return "Thank you for your inquiry! As your Prestige Estate consultant, I'm here to help you navigate Pakistan's real estate market.\n\n"
+        return "Thank you for your inquiry! As your Malik Real Estate consultant, I'm here to help you navigate Pakistan's real estate market.\n\n"
                 + "I can help you with:\n"
-                + "🏡 Finding the right property (House, Plot, Apartment)\n"
-                + "📍 Location advice (DHA, Bahria Town, Gulberg, etc.)\n"
-                + "💰 Investment strategies and price analysis\n"
-                + "📋 Buying/renting process guidance\n\n"
+                + "ðŸ¡ Finding the right property (House, Plot, Apartment)\n"
+                + "ðŸ“ Location advice (DHA, Bahria Town, Gulberg, etc.)\n"
+                + "ðŸ’° Investment strategies and price analysis\n"
+                + "ðŸ“‹ Buying/renting process guidance\n\n"
                 + "What specific aspect of real estate can I assist you with today?";
     }
 

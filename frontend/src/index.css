@@ -19,7 +19,7 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: #f8f9fa;
   }
   ::-webkit-scrollbar-thumb {
     background: #D4AF37;
@@ -54,9 +54,10 @@
 
   /* Glassmorphism card */
   .glass-card {
-    background: rgba(26, 26, 26, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
   }
 
   /* Input base style */

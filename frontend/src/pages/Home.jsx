@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Building2, Search, TrendingUp, ShieldCheck } from 'lucide-react';
 
@@ -22,7 +22,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 mix-blend-luminosity"></div>
         <div className="z-10 text-center max-w-4xl px-6">
           <h1 className="text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-6">
-            Find Your <span className="text-brand-gold">Prestige</span> Home
+            Find Your <span className="text-brand-gold">Malik</span> Home
           </h1>
           <p className="text-xl text-brand-white/80 mb-10">
             The premier AI-powered real estate platform in Pakistan. Discover elite properties, smart investments, and luxury living.

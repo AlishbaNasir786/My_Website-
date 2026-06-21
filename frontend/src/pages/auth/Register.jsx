@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE from '../../api';
@@ -27,7 +27,7 @@ export default function Register() {
     <div className="min-h-[80vh] flex items-center justify-center py-12">
       <div className="bg-brand-dark p-8 rounded-lg shadow-xl shadow-brand-gold/5 border border-brand-gold/20 w-full max-w-md">
         <h2 className="text-3xl font-bold text-brand-gold mb-2 text-center tracking-wide">CREATE ACCOUNT</h2>
-        <p className="text-brand-white/50 text-center text-sm mb-6">Join Prestige Estate</p>
+        <p className="text-brand-white/50 text-center text-sm mb-6">Join Malik Real Estate</p>
 
         {error && <div className="bg-red-500/10 text-red-400 border border-red-500/30 p-3 rounded mb-4 text-sm">{error}</div>}
         {success && <div className="bg-green-500/10 text-green-400 border border-green-500/30 p-3 rounded mb-4 text-sm">{success}</div>}

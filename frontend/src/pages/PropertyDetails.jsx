@@ -57,9 +57,8 @@ export default function PropertyDetails() {
 
   if (!property) return <div className="text-center py-20 text-brand-gold">Loading...</div>;
 
-  const agentPhone = property.agent?.phone || '923001234567';
-  const whatsappUrl = `https://wa.me/${agentPhone.replace('+', '')}?text=${encodeURIComponent(
-    `Hi, I am interested in your property: "${property.title}" (ID: ${property.id}, Price: Rs. ${property.price}) listed on Prestige Estate.`
+  const whatsappUrl = `https://wa.me/923167576055?text=${encodeURIComponent(
+    `Hi, I am interested in your property: "${property.title}" (ID: ${property.id}, Price: Rs. ${property.price}) listed on Malik Real Estate.`
   )}`;
 
   return (
@@ -132,7 +131,7 @@ export default function PropertyDetails() {
                 {property.agent?.firstName?.substring(0, 1) || 'A'}
               </div>
               <div>
-                <h4 className="font-bold text-brand-white">{property.agent ? `${property.agent.firstName} ${property.agent.lastName}` : 'Prestige Agent'}</h4>
+                <h4 className="font-bold text-brand-white">{property.agent ? `${property.agent.firstName} ${property.agent.lastName}` : 'Malik Agent'}</h4>
                 <p className="text-brand-white/50 text-xs">{property.agent?.role || 'Real Estate Consultant'}</p>
               </div>
             </div>

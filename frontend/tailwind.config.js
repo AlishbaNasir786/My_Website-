@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#0a0a0a',
-        'brand-dark': '#1a1a1a',
-        'brand-gold': '#D4AF37',
+        'brand-black': '#ffffff', // Was black, now pure white background
+        'brand-dark': '#f8f9fa', // Was dark gray, now very light gray for cards
+        'brand-gold': '#D4AF37', // Kept elegant gold
         'brand-gold-light': '#F3E5AB',
-        'brand-white': '#f8f8f8',
+        'brand-white': '#1f2937', // Was white text, now dark gray text
       }
     },
   },
