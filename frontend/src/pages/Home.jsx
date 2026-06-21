@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Building2, Search, TrendingUp, ShieldCheck } from 'lucide-react';
 
@@ -19,7 +19,7 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-[80vh] flex items-center justify-center bg-brand-dark/50 border-b border-brand-gold/20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 mix-blend-luminosity"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-40 mix-blend-overlay"></div>
         <div className="z-10 text-center max-w-4xl px-6">
           <h1 className="text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-6">
             Find Your <span className="text-brand-gold">Malik</span> Home

@@ -5,12 +5,12 @@
 @layer base {
   body {
     @apply bg-brand-black text-brand-white;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Outfit', system-ui, sans-serif;
   }
 
-  h1, h2, h3 {
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.02em;
+  h1, h2, h3, .font-display {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.01em;
   }
 
   /* Custom scrollbar */
@@ -19,27 +19,27 @@
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #f8f9fa;
+    background: #0a0510;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D4AF37;
+    background: #C084FC;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #F3E5AB;
+    background: #F472B6;
   }
 
   /* Smooth focus ring */
   *:focus-visible {
-    outline: 2px solid #D4AF37;
+    outline: 2px solid #C084FC;
     outline-offset: 2px;
   }
 }
 
 @layer components {
-  /* Gold shimmer animation for headings */
+  /* Luxury shimmer animation for headings */
   .gold-shimmer {
-    background: linear-gradient(90deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+    background: linear-gradient(90deg, #C084FC 0%, #3B82F6 25%, #F472B6 50%, #C084FC 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,10 +54,10 @@
 
   /* Glassmorphism card */
   .glass-card {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(26, 11, 46, 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(192, 132, 252, 0.3);
+    box-shadow: 0 10px 30px -5px rgba(192, 132, 252, 0.1);
   }
 
   /* Input base style */
