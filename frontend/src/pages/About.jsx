@@ -24,7 +24,9 @@ export default function About() {
           {/* Using the image copy 2.png that was just uploaded to the public folder */}
           <img 
             src="/image copy 2.png" 
-            alt="Malik Arshad" 
+            alt="Malik Arshad"
+            loading="eager"
+            fetchPriority="high"
             onError={(e) => {
               e.target.onerror = null; 
               e.target.src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80"

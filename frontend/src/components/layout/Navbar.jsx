@@ -26,7 +26,7 @@ export default function Navbar() {
     <nav className="bg-brand-dark border-b border-brand-gold/20 px-4 md:px-6 py-4">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <Link to="/" className="flex items-center gap-3 text-brand-gold">
-          <img src="/image.png" alt="Malik Arshad Real Estate" className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-gold shadow-[0_0_15px_rgba(197,160,89,0.4)] logo-spin" />
+          <img src="/image.png" alt="Malik Arshad Real Estate" loading="eager" fetchPriority="high" className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-gold shadow-[0_0_15px_rgba(197,160,89,0.4)] logo-spin" />
           <Building2 size={32} className="hidden" />
           <span className="text-xl md:text-2xl font-bold tracking-wider font-display text-center">Malik Real Estate</span>
         </Link>
