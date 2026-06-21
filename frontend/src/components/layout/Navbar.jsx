@@ -26,7 +26,7 @@ export default function Navbar() {
     <nav className="bg-brand-dark border-b border-brand-gold/20 px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3 text-brand-gold">
-          <img src="/logo.png" alt="Malik Arshad Real Estate" className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold shadow-[0_0_15px_rgba(192,132,252,0.4)]" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+          <img src="/logo.svg" alt="Malik Arshad Real Estate" className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold shadow-[0_0_15px_rgba(192,132,252,0.4)]" />
           <Building2 size={32} className="hidden" />
           <span className="text-2xl font-bold tracking-wider font-display">Malik Real Estate</span>
         </Link>
