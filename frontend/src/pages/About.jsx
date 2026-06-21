@@ -54,7 +54,7 @@ export default function About() {
         <div className="glass-card p-2 rounded-2xl order-1 md:order-2">
           {/* Changed to look for a local image in the public folder */}
           <img 
-            src="/malik-arshad.png" 
+            src="/malik-arshad copy.png" 
             alt="Malik Arshad" 
             onError={(e) => {
               e.target.onerror = null; 
