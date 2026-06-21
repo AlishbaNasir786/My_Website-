@@ -11,8 +11,8 @@ export default {
         'brand-dark': '#fafafa', // Off-white for subtle section contrast
         'brand-gold': '#D4AF37', // Rich luxurious gold
         'brand-gold-light': '#F3E5AB', // Soft light gold
-        'brand-blue': '#222222', // Mapped previous blue elements to a soft black/charcoal
-        'brand-white': '#111111', // Very dark charcoal/black for highly readable text
+        'brand-blue': '#000000', // Mapped previous blue elements to pure black
+        'brand-white': '#000000', // Pure black for maximum readability
       },
       fontFamily: {
         'sans': ['Outfit', 'sans-serif'],
