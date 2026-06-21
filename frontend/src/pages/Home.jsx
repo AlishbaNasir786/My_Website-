@@ -21,7 +21,7 @@ export default function Home() {
       <section className="relative min-h-[80vh] flex items-center justify-center bg-transparent py-10">
         <div className="z-10 text-center w-full max-w-4xl px-4 md:px-8 py-8 md:py-12 bg-black/30 backdrop-blur-sm border-2 border-brand-gold shadow-[0_4px_30px_rgba(212,175,55,0.3)] rounded-3xl mx-4 md:mx-6 my-auto">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-brand-white tracking-tight mb-4 md:mb-6 drop-shadow-lg">
-            Find Your <span className="text-brand-gold">Malik</span> Home
+            Discover Your <span className="text-brand-gold">Dream</span> Estate
           </h1>
           <p className="text-xl text-brand-white/90 mb-10 font-medium drop-shadow-md">
             The premier AI-powered real estate platform in Pakistan. Discover elite properties, smart investments, and luxury living.
