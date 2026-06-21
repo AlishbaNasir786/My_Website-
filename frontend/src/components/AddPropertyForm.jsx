@@ -21,15 +21,45 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const [uploadProgress, setUploadProgress] = useState('');
+
   const handleChange = (field, isNumber = false) => (e) => {
     const value = isNumber ? (e.target.value === '' ? '' : Number(e.target.value)) : e.target.value;
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  // Compress image using Canvas API before uploading
+  const compressImage = (file, maxWidthPx = 1200, quality = 0.75) => {
+    return new Promise((resolve) => {
+      // Skip compression for small files (< 200KB)
+      if (file.size < 200 * 1024) { resolve(file); return; }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let { width, height } = img;
+          if (width > maxWidthPx) {
+            height = Math.round((height * maxWidthPx) / width);
+            width = maxWidthPx;
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+          canvas.toBlob((blob) => {
+            resolve(new File([blob], file.name, { type: 'image/jpeg' }));
+          }, 'image/jpeg', quality);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     setImages(files);
-    // Generate preview URLs
     const previews = files.map(f => URL.createObjectURL(f));
     setImagePreviews(previews);
   };
@@ -45,27 +75,39 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setUploadProgress('');
 
     try {
       const token = localStorage.getItem('token');
 
       // Step 1: Create the property
+      setUploadProgress('Creating listing...');
       const propRes = await axios.post(`${API_BASE}/api/v1/properties`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const propertyId = propRes.data.id;
 
-      // Step 2: Upload images one by one (FIXED: renamed to imageFormData to avoid variable shadowing)
-      for (const file of images) {
-        const imageFormData = new FormData();
-        imageFormData.append('file', file);
-        await axios.post(
-          `${API_BASE}/api/v1/properties/${propertyId}/images`,
-          imageFormData,
-          { headers: { Authorization: `Bearer ${token}` } }
+      // Step 2: Compress all images in parallel
+      if (images.length > 0) {
+        setUploadProgress(`Compressing ${images.length} image(s)...`);
+        const compressedImages = await Promise.all(images.map(file => compressImage(file)));
+
+        // Step 3: Upload all images in parallel (much faster!)
+        setUploadProgress(`Uploading ${compressedImages.length} image(s)...`);
+        await Promise.all(
+          compressedImages.map(file => {
+            const imageFormData = new FormData();
+            imageFormData.append('file', file);
+            return axios.post(
+              `${API_BASE}/api/v1/properties/${propertyId}/images`,
+              imageFormData,
+              { headers: { Authorization: `Bearer ${token}` } }
+            );
+          })
         );
       }
 
+      setUploadProgress('Done!');
       onPropertyAdded();
       onClose();
     } catch (err) {
@@ -73,6 +115,7 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
       const msg = err.response?.data?.message || err.message || 'Failed to save property. Please try again.';
       setError(msg);
       setLoading(false);
+      setUploadProgress('');
     }
   };
 
@@ -158,20 +201,25 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
 
           {/* Image Upload */}
           <div>
-            <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-2">Property Images</label>
+            <label className="block text-brand-white/60 text-xs uppercase tracking-wider mb-2">
+              Property Images <span className="text-brand-gold/60 normal-case">(auto-compressed for fast upload)</span>
+            </label>
             <label className="block border border-dashed border-brand-gold/50 p-6 rounded-lg text-center cursor-pointer hover:border-brand-gold hover:bg-brand-black/30 transition-all">
               <Upload className="mx-auto text-brand-gold mb-2" size={28} />
               <span className="text-brand-white/80 text-sm">Click to select images</span>
-              <p className="text-brand-white/40 text-xs mt-1">JPG, PNG, WEBP (multiple allowed)</p>
+              <p className="text-brand-white/40 text-xs mt-1">JPG, PNG, WEBP — any size, auto-compressed before upload</p>
               <input type="file" multiple className="hidden" accept="image/*" onChange={handleImageChange} />
             </label>
 
-            {/* Image Previews */}
+            {/* Image Previews with file size info */}
             {imagePreviews.length > 0 && (
               <div className="flex gap-3 mt-3 flex-wrap">
                 {imagePreviews.map((src, i) => (
                   <div key={i} className="relative group">
                     <img src={src} alt={`preview-${i}`} className="w-20 h-16 object-cover rounded border border-brand-gold/30" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-[9px] text-brand-gold text-center py-0.5 rounded-b">
+                      {(images[i]?.size / 1024).toFixed(0)}KB
+                    </div>
                     <button
                       type="button"
                       onClick={() => removeImage(i)}
@@ -193,7 +241,7 @@ export default function AddPropertyForm({ onClose, onPropertyAdded }) {
             {loading ? (
               <>
                 <div className="w-4 h-4 border-2 border-brand-black/30 border-t-brand-black rounded-full animate-spin" />
-                Saving & Uploading...
+                {uploadProgress || 'Processing...'}
               </>
             ) : (
               <>
