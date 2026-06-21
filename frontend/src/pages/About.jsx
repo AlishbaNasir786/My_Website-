@@ -52,9 +52,9 @@ export default function About() {
           </div>
         </div>
         <div className="glass-card p-2 rounded-2xl order-1 md:order-2">
-          {/* Using the image copy.png that was just uploaded to the public folder */}
+          {/* Using the image copy 2.png that was just uploaded to the public folder */}
           <img 
-            src="/image copy.png" 
+            src="/image copy 2.png" 
             alt="Malik Arshad" 
             onError={(e) => {
               e.target.onerror = null; 
