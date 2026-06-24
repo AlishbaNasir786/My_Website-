@@ -1,18 +1,26 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Building2 } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const token = localStorage.getItem('token');
   const userJson = localStorage.getItem('user');
   let user = null;
-  if (userJson) {
-    try {
-      user = JSON.parse(userJson);
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  if (userJson) { try { user = JSON.parse(userJson); } catch (e) {} }
+
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Only be transparent on homepage
+  const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -21,39 +29,98 @@ export default function Navbar() {
   };
 
   const isAdminOrAgent = user && user.roles && (user.roles.includes('ROLE_ADMIN') || user.roles.includes('ROLE_AGENT'));
+  const isDark = isHome && !scrolled; // dark bg = white text; light bg = dark text
 
   return (
-    <nav className="bg-brand-dark border-b border-brand-gold/20 px-4 md:px-6 py-4">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <Link to="/" className="flex items-center gap-3 text-brand-gold">
-          <img src="/image.png" alt="Malik Arshad Real Estate" loading="eager" fetchPriority="high" className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-brand-gold shadow-[0_0_15px_rgba(197,160,89,0.4)] logo-spin" />
-          <Building2 size={32} className="hidden" />
-          <span className="text-xl md:text-2xl font-bold tracking-wider font-display text-center">Malik Real Estate</span>
-        </Link>
-        <div className="flex flex-wrap justify-center gap-3 md:gap-6 items-center">
-          <Link to="/" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide text-sm md:text-base">Home</Link>
-          <Link to="/about" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide">About</Link>
-          <Link to="/properties" className="text-brand-white hover:text-brand-gold transition-colors font-medium tracking-wide">Properties</Link>
-          {isAdminOrAgent && (
-            <Link to="/admin" className="text-brand-white hover:text-brand-gold transition-colors">Dashboard</Link>
-          )}
-          {token ? (
-            <div className="flex items-center gap-4">
-              <span className="text-brand-white/70 text-xs hidden md:inline border border-brand-gold/20 px-2 py-1 rounded bg-brand-black">
-                {user?.email} ({user?.roles?.[0]?.replace('ROLE_', '')})
-              </span>
-              <button onClick={handleLogout} className="px-4 py-2 border border-brand-gold text-brand-gold rounded hover:bg-brand-gold hover:text-brand-black transition-colors text-sm font-medium">
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div className="flex gap-4 items-center">
-              <Link to="/login" className="px-4 py-2 border border-brand-gold text-brand-gold rounded hover:bg-brand-gold hover:text-brand-black transition-colors text-sm font-medium">Sign In</Link>
-              <Link to="/register" className="px-4 py-2 bg-brand-gold text-brand-black rounded hover:bg-brand-gold-light transition-colors text-sm font-medium">Register</Link>
-            </div>
-          )}
+    <>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+        (isHome && !scrolled) ? 'navbar-transparent py-5 px-[5%]' : 'navbar-scrolled py-4 px-[5%]'
+      }`}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+
+          {/* Logo */}
+          <Link to="/" className={`flex items-center gap-3 font-display font-bold text-2xl transition-colors ${isDark ? 'text-white' : 'text-primary'}`}>
+            <img src="/image.png" alt="Malik Real Estate" loading="eager" fetchPriority="high"
+              className="w-10 h-10 rounded-full object-cover border-2 border-gold logo-spin" />
+            <span>Malik Real Estate</span>
+          </Link>
+
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-8">
+            {['/', '/properties', '/about'].map((path, i) => {
+              const labels = ['Home', 'Properties', 'About'];
+              return (
+                <Link key={path} to={path}
+                  className={`font-medium text-sm relative group transition-colors ${isDark ? 'text-white/90 hover:text-gold' : 'text-primary hover:text-accent'}`}>
+                  {labels[i]}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 w-0 bg-gold group-hover:w-full transition-all duration-300`} />
+                </Link>
+              );
+            })}
+            {isAdminOrAgent && (
+              <Link to="/admin" className={`font-medium text-sm transition-colors ${isDark ? 'text-white/90 hover:text-gold' : 'text-primary hover:text-accent'}`}>
+                Dashboard
+              </Link>
+            )}
+          </div>
+
+          {/* Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            {token ? (
+              <>
+                <span className={`text-xs font-medium ${isDark ? 'text-white/60' : 'text-brand-text-light'}`}>
+                  {user?.email}
+                </span>
+                <button onClick={handleLogout}
+                  className={`btn-outline text-sm ${isDark ? '' : 'btn-outline-dark'}`}>
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className={`btn-outline text-sm ${isDark ? '' : 'btn-outline-dark'}`}>Sign In</Link>
+                <Link to="/register" className="btn-accent text-sm">Register</Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile hamburger */}
+          <button onClick={() => setMobileOpen(!mobileOpen)}
+            className={`md:hidden p-2 ${isDark ? 'text-white' : 'text-primary'}`}>
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 bg-primary/95 backdrop-blur-md flex flex-col items-center justify-center gap-6 text-white">
+          <button onClick={() => setMobileOpen(false)} className="absolute top-5 right-5 text-white">
+            <X size={28} />
+          </button>
+          {[['/', 'Home'], ['/properties', 'Properties'], ['/about', 'About']].map(([path, label]) => (
+            <Link key={path} to={path} onClick={() => setMobileOpen(false)}
+              className="text-2xl font-display font-semibold hover:text-gold transition-colors">
+              {label}
+            </Link>
+          ))}
+          {isAdminOrAgent && (
+            <Link to="/admin" onClick={() => setMobileOpen(false)}
+              className="text-2xl font-display font-semibold hover:text-gold transition-colors">Dashboard</Link>
+          )}
+          <div className="flex gap-4 mt-4">
+            {token ? (
+              <button onClick={() => { handleLogout(); setMobileOpen(false); }}
+                className="btn-outline">Sign Out</button>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="btn-outline">Sign In</Link>
+                <Link to="/register" onClick={() => setMobileOpen(false)} className="btn-accent">Register</Link>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

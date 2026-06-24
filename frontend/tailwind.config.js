@@ -7,16 +7,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-black': '#121212', // Much lighter black / dark gray
-        'brand-dark': '#1c1c1c', // Lighter contrast layer
-        'brand-gold': '#D4AF37', // Rich luxurious gold
-        'brand-gold-light': '#F3E5AB', // Soft light gold
-        'brand-blue': '#D4AF37', // Mapped previous blue elements to gold
-        'brand-white': '#ffffff', // Pure white for text on black background
+        primary: '#1a1a2e',
+        'primary-light': '#16213e',
+        accent: '#e94560',
+        'accent-hover': '#d63d56',
+        gold: '#c9a96e',
+        'gold-light': '#e8d5a3',
+        'brand-bg': '#f8f9fa',
+        'brand-text': '#2d2d2d',
+        'brand-text-light': '#6b7280',
+        // keep legacy names working
+        'brand-black': '#1a1a2e',
+        'brand-dark': '#16213e',
+        'brand-gold': '#c9a96e',
+        'brand-gold-light': '#e8d5a3',
+        'brand-white': '#ffffff',
       },
       fontFamily: {
-        'sans': ['Outfit', 'sans-serif'],
+        'sans': ['Inter', 'sans-serif'],
         'display': ['"Playfair Display"', 'serif'],
+      },
+      boxShadow: {
+        'card': '0 4px 20px rgba(0,0,0,0.08)',
+        'card-lg': '0 10px 40px rgba(0,0,0,0.12)',
       }
     },
   },
